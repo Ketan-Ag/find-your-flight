@@ -43,9 +43,6 @@ const SearchResults = () => {
 
       <div className="w-4/5 m-auto">
         <div className="text-muted-foreground">Showing 356 of 767 results</div>
-        <div className="">
-          
-        </div>
       </div>
 
     </div>
