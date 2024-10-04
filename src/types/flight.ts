@@ -1,5 +1,5 @@
 export type Frameworks = {
-    value: string
+    value: LocationType
     label: string
 }
 
@@ -8,4 +8,11 @@ export type FlightTripType = {
     to: string
     departure: Date
     return: Date
+}
+
+export type LocationType = {
+    name: string
+    code: string
+    city: string
+    country: string
 }

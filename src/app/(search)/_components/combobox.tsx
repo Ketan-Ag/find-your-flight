@@ -20,13 +20,13 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover"
 import airportsData from "@/data/airports.json"
-import { Frameworks } from "@/types/flight"
+import { Frameworks, LocationType } from "@/types/flight"
 
 
 interface ComboboxProps {
-    value?: string,
-    setValue: (value: string) => void,
-    text: string
+  value?: LocationType,
+  setValue: (value: LocationType) => void,
+  text: string
 }
 
 export const Combobox = ({
@@ -36,7 +36,7 @@ export const Combobox = ({
 }: ComboboxProps) => {
   const [open, setOpen] = React.useState(false)
 
-  const frameworks : Frameworks[] = airportsData.airports.map((airport) => ({value: airport.city, label: airport.city}));
+  const frameworks : Frameworks[] = airportsData.airports.map((airport) => ({value: airport, label: airport.city}));
 
   return (
     <Popover open={open} onOpenChange={setOpen}>
@@ -48,7 +48,7 @@ export const Combobox = ({
           className="w-[200px] justify-between"
         >
           {value
-            ? frameworks.find((framework) => framework.value === value)?.label
+            ? frameworks.find((framework) => framework.value.city === value.city)?.label
             : text}
           <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
         </Button>
@@ -61,10 +61,10 @@ export const Combobox = ({
             <CommandGroup>
               {frameworks.map((framework) => (
                 <CommandItem
-                  key={framework.value}
-                  value={framework.value}
+                  key={framework.value.city}
+                  value={framework.value.city}
                   onSelect={(currentValue) => {
-                    setValue(currentValue === value ? "" : currentValue)
+                    setValue(currentValue === value?.city ? {name:"",code:"",city:"",country:""} : frameworks.find(f => f.value.city === currentValue)?.value || {name:"",code:"",city:"",country:""})
                     setOpen(false)
                   }}
                 >

@@ -1,22 +1,22 @@
+import { LocationType } from "@/types/flight";
 import {create} from "zustand";
 
-const defaultValue = { flightFrom: "", flightTo: "" , departureDate: undefined, returnDate: undefined};
 
 interface IFlightDetails {
-    flightFrom: string;
-    flightTo: string;
+    flightFrom: LocationType;
+    flightTo: LocationType;
     departureDate: Date;
     returnDate: Date;
-    onCreateFlightDetails: (flightFrom: string, flightTo: string, departureDate: Date, returnDate: Date) => void;
+    onCreateFlightDetails: (flightFrom: LocationType, flightTo: LocationType, departureDate: Date, returnDate: Date) => void;
     onChangeFlightDetails: (key: any, value: any) => void;
 }
 
 export const flightDetails = create<IFlightDetails>((set) => ({
-    flightFrom: "",
-    flightTo: "",
+    flightFrom: {name:"", code:"", city:"", country:""},
+    flightTo: {name:"", code:"", city:"", country:""},
     departureDate: new Date(),
     returnDate: new Date(),
-    onCreateFlightDetails: (flightFrom: string, flightTo: string, departureDate: Date, returnDate: Date) => {
+    onCreateFlightDetails: (flightFrom: LocationType, flightTo: LocationType, departureDate: Date, returnDate: Date) => {
         set({
             flightFrom: flightFrom,
             flightTo: flightTo,

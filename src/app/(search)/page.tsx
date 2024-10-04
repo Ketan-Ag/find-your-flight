@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Button } from '@/components/ui/button'
 import { ArrowRightLeft, ChevronDown, Target, Search } from 'lucide-react'
 import React from 'react'
@@ -9,6 +9,7 @@ import { Combobox } from './_components/combobox'
 import { useToast } from '@/hooks/use-toast'
 import { useRouter } from 'next/navigation'
 import { flightDetails } from '@/store/flight-details'
+import { LocationType } from '@/types/flight'
 
 const SearchFlights = () => {
   const router = useRouter();
@@ -16,8 +17,8 @@ const SearchFlights = () => {
   const { toast } = useToast()
   const {onCreateFlightDetails} = flightDetails();
 
-  const [flightFromValue, setFlightFromValue] = useState<string>()
-  const [flightToValue, setFlightToValue] = useState<string>()
+  const [flightFromValue, setFlightFromValue] = useState<LocationType>()
+  const [flightToValue, setFlightToValue] = useState<LocationType>()
   const [departureValue, setDepartureValue] = useState<Date>()
   const [returnValue, setReturnValue] = useState<Date>()
 
@@ -35,7 +36,7 @@ const SearchFlights = () => {
       })
       return;
     }
-    if(flightFromValue === flightToValue){
+    if(flightFromValue.city === flightToValue.city){
       toast({
         title: "Source and destination cannot be the same",
         description: "Please select different cities ",
@@ -51,7 +52,7 @@ const SearchFlights = () => {
       return;
     }
 
-    if(departureValue && returnValue && departureValue < new Date()){
+    if(departureValue && returnValue && departureValue.getDay < new Date().getDay){
       toast({
         title: "Departure date cannot be in the past",
         description: "Please select a valid date",
