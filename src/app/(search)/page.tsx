@@ -52,7 +52,7 @@ const SearchFlights = () => {
       return;
     }
 
-    if(departureValue && returnValue && departureValue.getDay < new Date().getDay){
+    if(departureValue && returnValue && departureValue.getDate() < new Date().getDate()){
       toast({
         title: "Departure date cannot be in the past",
         description: "Please select a valid date",
