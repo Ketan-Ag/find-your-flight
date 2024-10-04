@@ -30,6 +30,17 @@ const SearchFlights = () => {
         description: "Please select different cities ",
       })
     }
+
+    if(departureValue && returnValue && departureValue > returnValue){
+      toast({
+        title: "Departure date cannot be after return date",
+        description: "Please select a valid date",
+      })
+    }
+
+    console.log('fli', flightFromValue, flightToValue)
+    console.log('de', departureValue)
+    console.log('re', returnValue)
   }
 
   return (
