@@ -19,7 +19,7 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover"
-import {airports} from "@/data/airports.json"
+import airportsData from "@/data/airports.json"
 import { Frameworks } from "@/types/flight"
 
 
@@ -36,7 +36,7 @@ export const Combobox = ({
 }: ComboboxProps) => {
   const [open, setOpen] = React.useState(false)
 
-  const frameworks : Frameworks[] = airports.map((airport) => ({value: airport.city, label: airport.city}));
+  const frameworks : Frameworks[] = airportsData.airports.map((airport) => ({value: airport.city, label: airport.city}));
 
   return (
     <Popover open={open} onOpenChange={setOpen}>
