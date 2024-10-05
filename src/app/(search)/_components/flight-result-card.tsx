@@ -22,7 +22,7 @@ import { flightDetails } from '@/store/flight-details'
 interface FlightResultCardProps {
   flightOne: string,
   flightTwo: string,
-  price: number,
+  price: string,
   timeOne: string,
   timeTwo: string,
   stopOne: number,

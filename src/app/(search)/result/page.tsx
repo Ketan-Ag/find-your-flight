@@ -34,7 +34,7 @@ const SearchResults = () => {
           <FlightResultCard 
             flightOne='Emirates'
             flightTwo='Lufthansa'
-            price={2456.90}
+            price="2456.90"
             timeOne="2h 10min"
             timeTwo="4h 10min"
             stopOne={0}
@@ -43,7 +43,7 @@ const SearchResults = () => {
           <FlightResultCard 
             flightOne='Emirates'
             flightTwo='Emirates'
-            price={1456.90}
+            price="1456.90"
             timeOne="7h 10min"
             timeTwo="19h 10min"
             stopOne={1}
@@ -52,7 +52,7 @@ const SearchResults = () => {
           <FlightResultCard 
             flightOne='Lufthansa'
             flightTwo='Lufthansa'
-            price={1456.90}
+            price="1456.90"
             timeOne="7h 10min"
             timeTwo="4h 10min"
             stopOne={0}
