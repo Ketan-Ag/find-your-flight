@@ -26,7 +26,7 @@ const SearchResults = () => {
 
       <div className="w-4/5 m-auto">
         <div className="text-muted-foreground">Showing 356 of 767 results</div>
-        <div className="flex flex-col mt-4 gap-5">
+        <div className="flex flex-col mt-4 gap-5 pb-5">
           <FlightResultCard 
             flightOne='Emirates'
             flightTwo='Lufthansa'

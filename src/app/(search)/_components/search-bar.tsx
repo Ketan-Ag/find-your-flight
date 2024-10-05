@@ -78,10 +78,11 @@ const SearchBar = ({
     if(toggleLoadingScreen != null){
       toggleLoadingScreen()
       setTimeout(() => {
+        router.push("/result")
         toggleLoadingScreen()
       }, 3000);
     }
-    router.push("/result")
+    
   }
 
   useEffect(() => {

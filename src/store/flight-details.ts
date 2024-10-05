@@ -22,6 +22,5 @@ export const flightDetails = create<IFlightDetails>((set) => ({
             departureDate: departureDate,
             returnDate: returnDate
         });
-        console.log('flightDetails.getState()', flightDetails.getState());
     },
 }));
