@@ -2,7 +2,7 @@ import SearchBar from './_components/search-bar'
 
 const SearchFlights = () => {
   return (
-    <div className='flex flex-col items-center gap-5'>
+    <div className='flex flex-col items-center gap-5 mt-10'>
       <div className="text-4xl">Good afternoon, Brian</div>
       <div className="border-[1px] border-gray-200 rounded-lg flex flex-col gap-6 p-3">
         <div className="px-3">

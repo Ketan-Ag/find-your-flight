@@ -5,15 +5,9 @@ import Loading from "@/components/Loading";
 import { Suspense } from "react";
 import { Toaster } from "@/components/ui/toaster";
 
-const geistSans = localFont({
-  src: "./fonts/GeistVF.woff",
-  variable: "--font-geist-sans",
-  weight: "100 900",
-});
-const geistMono = localFont({
-  src: "./fonts/GeistMonoVF.woff",
-  variable: "--font-geist-mono",
-  weight: "100 900",
+const neueMontreal = localFont({
+  src: "./fonts/NeueMontreal-Regular.otf",
+  variable: "--font-neue-montreal-regular",
 });
 
 export const metadata: Metadata = {
@@ -29,7 +23,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${neueMontreal.variable} antialiased font-neueMontreal`}
       >
         <Suspense fallback={<Loading/>}>
           {children}
