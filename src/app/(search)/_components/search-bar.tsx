@@ -37,7 +37,7 @@ const SearchBar = ({
 
 
   const handleSwapSourceAndDestintaion = () => {
-    let temp = flightFromValue
+    const temp = flightFromValue
     setFlightFromValue(flightToValue)
     setFlightToValue(temp)
   }

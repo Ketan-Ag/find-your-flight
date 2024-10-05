@@ -60,10 +60,10 @@ const config: Config = {
 			neueMontreal: ['var(--font-neue-montreal-regular)']
 		},
 		animation:{
-			'progress-load': 'load 2s linear infinite'
+			'progress-load': 'loadBar 2s linear infinite'
 		},
 		keyframes: {
-			load : {
+			loadBar : {
 				'0%' : {left: '-50%'},
 				'100%' : {left: '150%'}
 			}

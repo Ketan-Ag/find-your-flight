@@ -4,7 +4,6 @@ import { Separator } from '@/components/ui/separator'
 import { getMonthName } from '@/lib/utils'
 import { flightDetails } from '@/store/flight-details'
 import { Search } from 'lucide-react'
-import { useRouter } from 'next/navigation'
 import React from 'react'
 import {
   Sheet,

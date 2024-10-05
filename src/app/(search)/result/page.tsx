@@ -16,7 +16,7 @@ const SearchResults = () => {
     if (!flightFrom.city || !flightTo.city || !departureDate || !returnDate) {
       router.push('/')
     }
-  }, [])
+  }, [flightFrom, flightTo, departureDate, returnDate])
 
   return (
     <div>
