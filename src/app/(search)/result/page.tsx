@@ -1,9 +1,7 @@
 "use client"
 
 import { Separator } from '@/components/ui/separator';
-import { getMonthName } from '@/lib/utils';
 import { flightDetails } from '@/store/flight-details';
-import { Search } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import React, { useEffect } from 'react'
 import Navbar from '../_components/navbar';
@@ -13,8 +11,6 @@ const SearchResults = () => {
   const router = useRouter();
 
   const { flightFrom, flightTo, departureDate, returnDate } = flightDetails();
-
-
 
   useEffect(() => {
     if (!flightFrom.city || !flightTo.city || !departureDate || !returnDate) {

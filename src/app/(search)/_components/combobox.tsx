@@ -1,7 +1,6 @@
 "use client"
 
 import * as React from "react"
-import { useState } from "react"
 import { Check, ChevronsUpDown, Frame } from "lucide-react"
 
 import { cn } from "@/lib/utils"

@@ -1,6 +1,6 @@
 "use client"
 
-import { useCallback, useState } from 'react';
+import { useState } from 'react';
 import SearchBar from './_components/search-bar'
 import Loading from '@/components/Loading';
 import { getGreeting } from '@/lib/utils';

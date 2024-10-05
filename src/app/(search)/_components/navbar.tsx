@@ -8,21 +8,12 @@ import { useRouter } from 'next/navigation'
 import React from 'react'
 import {
   Sheet,
-  SheetClose,
   SheetContent,
-  SheetDescription,
-  SheetFooter,
-  SheetHeader,
-  SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet"
-import { Button } from '@/components/ui/button'
-import { Label } from '@/components/ui/label'
-import { Input } from '@/components/ui/input'
 import SearchBar from './search-bar'
 
 const Navbar = () => {
-    const router = useRouter();
 
     const {flightFrom, flightTo, departureDate, returnDate} = flightDetails();
 
