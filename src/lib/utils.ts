@@ -13,3 +13,15 @@ export function getMonthName(date : Date): string{
 
   return months[date.getMonth()]
 }
+
+export function getGreeting() : string{
+  const currentHour = new Date().getHours();
+
+  if (currentHour < 12 && currentHour > 4) {
+    return "morning";
+  } else if (currentHour > 12 && currentHour < 18) {
+    return "afternoon";
+  } else {
+    return "evening";
+  }
+};
