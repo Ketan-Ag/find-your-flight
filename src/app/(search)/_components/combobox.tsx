@@ -53,7 +53,7 @@ export const Combobox = ({
           <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
         </Button>
       </PopoverTrigger>
-      <PopoverContent className="w-[200px] p-0">
+      <PopoverContent className="w-max p-0">
         <Command>
           <CommandInput placeholder="Search city..." />
           <CommandList>
@@ -64,17 +64,23 @@ export const Combobox = ({
                   key={framework.value.city}
                   value={framework.value.city}
                   onSelect={(currentValue) => {
-                    setValue(currentValue === value?.city ? {name:"",code:"",city:"",country:""} : frameworks.find(f => f.value.city === currentValue)?.value || {name:"",code:"",city:"",country:""})
+                    setValue(currentValue === value?.city ? value : frameworks.find(f => f.value.city === currentValue)?.value || {name:"",code:"",city:"",country:""})
                     setOpen(false)
                   }}
                 >
                   <Check
                     className={cn(
                       "mr-2 h-4 w-4",
-                      value === framework.value ? "opacity-100" : "opacity-0"
+                      value?.city === framework.value.city ? "opacity-100" : "opacity-0"
                     )}
                   />
-                  {framework.label}
+                  <div className="flex justify-between w-full">
+                    <div className="flex flex-col gap-1">
+                      <div className="text-sm">{framework.label}</div>
+                      <div className="text-[12px] text-muted-foreground">{framework.value.country}</div>
+                    </div>
+                    <div className="">{framework.value.code}</div>
+                  </div>
                 </CommandItem>
               ))}
             </CommandGroup>
