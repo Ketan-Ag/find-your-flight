@@ -12,7 +12,7 @@ import FlightResultCard from '../_components/flight-result-card';
 const SearchResults = () => {
   const router = useRouter();
 
-  const { onChangeFlightDetails, flightFrom, flightTo, departureDate, returnDate } = flightDetails();
+  const { flightFrom, flightTo, departureDate, returnDate } = flightDetails();
 
 
 

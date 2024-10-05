@@ -2,10 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
-  font-family: Arial, Helvetica, sans-serif;
-}
-
 @layer utilities {
   .text-balance {
     text-wrap: balance;
@@ -75,4 +71,23 @@ body {
   body {
     @apply bg-background text-foreground;
   }
+}
+.LoadingBarFlightResults{
+  position: relative;
+	height: 4px;
+	width: 100vw;
+	background-color: #E5EBEB;
+	border-radius: 1em;
+	overflow: hidden;
+}
+.LoadingBarFlightResults::after{
+  position: absolute;
+	top: 0;
+	left: 0;
+	content: "";
+	width: 50%;
+	height: 100%;
+	background: linear-gradient(90deg, rgba(58, 104, 137, 0.5) 0%, #3A6889 45.63%, rgba(58, 104, 137, 0.5) 100%);
+	border-radius: 1em;
+  overflow: hidden;
 }

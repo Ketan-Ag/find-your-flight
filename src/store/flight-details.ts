@@ -8,7 +8,6 @@ interface IFlightDetails {
     departureDate: Date;
     returnDate: Date;
     onCreateFlightDetails: (flightFrom: LocationType, flightTo: LocationType, departureDate: Date, returnDate: Date) => void;
-    onChangeFlightDetails: (key: any, value: any) => void;
 }
 
 export const flightDetails = create<IFlightDetails>((set) => ({
@@ -25,11 +24,4 @@ export const flightDetails = create<IFlightDetails>((set) => ({
         });
         console.log('flightDetails.getState()', flightDetails.getState());
     },
-    onChangeFlightDetails: (key: any, value: any) => {
-        set({
-            ...flightDetails.getState(), [key]: value
-        });
-
-        console.log("flightDetails", flightDetails.getState());
-    }
 }));

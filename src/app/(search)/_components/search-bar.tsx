@@ -10,118 +10,126 @@ import { useRouter } from 'next/navigation'
 import { useToast } from '@/hooks/use-toast'
 import { flightDetails } from '@/store/flight-details'
 
-interface SearchBarProps{
-    initialFlightFromValue?: LocationType;
-    initialFlightToValue: LocationType;
-    initialDepartureValue: Date;
-    initalReturnValue: Date;
+interface SearchBarProps {
+  initialFlightFromValue?: LocationType;
+  initialFlightToValue: LocationType;
+  initialDepartureValue: Date;
+  initalReturnValue: Date;
+  toggleLoadingScreen?: () => void | null;
 }
 
 const SearchBar = ({
-    initialFlightFromValue,
-    initialFlightToValue,
-    initialDepartureValue,
-    initalReturnValue,
+  initialFlightFromValue,
+  initialFlightToValue,
+  initialDepartureValue,
+  initalReturnValue,
+  toggleLoadingScreen
 }: SearchBarProps) => {
-    const router = useRouter();
-    const { toast } = useToast()
+  const router = useRouter();
+  const { toast } = useToast()
 
-    const {onCreateFlightDetails} = flightDetails();
+  const { onCreateFlightDetails } = flightDetails();
 
-    const [flightFromValue, setFlightFromValue] = useState<LocationType>()
-    const [flightToValue, setFlightToValue] = useState<LocationType>()
-    const [departureValue, setDepartureValue] = useState<Date>()
-    const [returnValue, setReturnValue] = useState<Date>()
-    
+  const [flightFromValue, setFlightFromValue] = useState<LocationType>()
+  const [flightToValue, setFlightToValue] = useState<LocationType>()
+  const [departureValue, setDepartureValue] = useState<Date>()
+  const [returnValue, setReturnValue] = useState<Date>()
 
-    const handleSwapSourceAndDestintaion = () => {
-        let temp = flightFromValue
-        setFlightFromValue(flightToValue)
-        setFlightToValue(temp)
+
+  const handleSwapSourceAndDestintaion = () => {
+    let temp = flightFromValue
+    setFlightFromValue(flightToValue)
+    setFlightToValue(temp)
+  }
+
+  const handleSubmit = () => {
+    if (!flightFromValue || !flightToValue || !departureValue || !returnValue) {
+      toast({
+        title: "Please fill all the fields",
+      })
+      return;
+    }
+    if (flightFromValue.city === flightToValue.city) {
+      toast({
+        title: "Source and destination cannot be the same",
+        description: "Please select different cities ",
+      })
+      return;
     }
 
-    const handleSubmit = () => {
-        if(!flightFromValue || !flightToValue || !departureValue || !returnValue){
-          toast({
-            title: "Please fill all the fields",
-          })
-          return;
-        }
-        if(flightFromValue.city === flightToValue.city){
-          toast({
-            title: "Source and destination cannot be the same",
-            description: "Please select different cities ",
-          })
-          return;
-        }
-    
-        if(departureValue && returnValue && departureValue > returnValue){
-          toast({
-            title: "Departure date cannot be after return date",
-            description: "Please select a valid date",
-          })
-          return;
-        }
-    
-        if(departureValue && returnValue && departureValue.getDate() < new Date().getDate()){
-          toast({
-            title: "Departure date cannot be in the past",
-            description: "Please select a valid date",
-          })
-          return;
-        }
-        
-        onCreateFlightDetails(flightFromValue, flightToValue, departureValue, returnValue)
-    
-        router.push("/result")
+    if (departureValue && returnValue && departureValue > returnValue) {
+      toast({
+        title: "Departure date cannot be after return date",
+        description: "Please select a valid date",
+      })
+      return;
     }
 
-    useEffect(() =>{
-        if(initialFlightFromValue?.name && initialFlightToValue?.name && initialDepartureValue && initalReturnValue){
-            setFlightFromValue(initialFlightFromValue);
-            setFlightToValue(initialFlightToValue)
-            setDepartureValue(initialDepartureValue)
-            setReturnValue(initalReturnValue)        
-        }
-    }, [])
+    if (departureValue && returnValue && departureValue.getDate() < new Date().getDate()) {
+      toast({
+        title: "Departure date cannot be in the past",
+        description: "Please select a valid date",
+      })
+      return;
+    }
 
-    return (
-        <>
-            <div className="flex justify-center items-center gap-4">
+    onCreateFlightDetails(flightFromValue, flightToValue, departureValue, returnValue)
 
-                <Combobox value={flightFromValue} setValue={setFlightFromValue} text='Where from?' />
+    if(toggleLoadingScreen != null){
+      toggleLoadingScreen()
+      setTimeout(() => {
+        toggleLoadingScreen()
+      }, 3000);
+    }
+    router.push("/result")
+  }
 
-                <div className="bg-[#F5F7FA]  rounded-full hover:cursor-pointer" onClick={handleSwapSourceAndDestintaion}>
-                    <ArrowRightLeft className='p-1' />
-                </div>
+  useEffect(() => {
+    if (initialFlightFromValue?.name && initialFlightToValue?.name && initialDepartureValue && initalReturnValue) {
+      setFlightFromValue(initialFlightFromValue);
+      setFlightToValue(initialFlightToValue)
+      setDepartureValue(initialDepartureValue)
+      setReturnValue(initalReturnValue)
+    }
+  }, [])
 
-                <Combobox value={flightToValue} setValue={setFlightToValue} text='Where to?' />
+  return (
+    <>
+      <div className="flex justify-center items-center gap-4">
 
-                <DatePicker
-                    date={departureValue}
-                    setDate={setDepartureValue}
-                    text='Departure'
-                />
+        <Combobox value={flightFromValue} setValue={setFlightFromValue} text='Where from?' />
 
-                <DatePicker
-                    date={returnValue}
-                    setDate={setReturnValue}
-                    text='Return'
-                />
+        <div className="bg-[#F5F7FA]  rounded-full hover:cursor-pointer" onClick={handleSwapSourceAndDestintaion}>
+          <ArrowRightLeft className='p-1' />
+        </div>
 
-            </div>
-            <div className="w-full ml-auto">
-                <Button
-                    className='bg-[#003E39] flex gap-2 ml-auto'
-                    size={"lg"}
-                    onClick={handleSubmit}
-                >
-                    <Search />
-                    <span>Search flights</span>
-                </Button>
-            </div>
-        </>
-    )
+        <Combobox value={flightToValue} setValue={setFlightToValue} text='Where to?' />
+
+        <DatePicker
+          date={departureValue}
+          setDate={setDepartureValue}
+          text='Departure'
+        />
+
+        <DatePicker
+          date={returnValue}
+          setDate={setReturnValue}
+          text='Return'
+        />
+
+      </div>
+      <div className="w-full ml-auto">
+        <Button
+          className='bg-[#003E39] flex gap-2 ml-auto'
+          size={"lg"}
+          onClick={handleSubmit}
+        >
+          <Search />
+          <span>Search flights</span>
+        </Button>
+      </div>
+    </>
+  )
 }
 
 export default SearchBar

@@ -58,6 +58,15 @@ const config: Config = {
   		},
 		fontFamily: {
 			neueMontreal: ['var(--font-neue-montreal-regular)']
+		},
+		animation:{
+			'progress-load': 'load 2s linear infinite'
+		},
+		keyframes: {
+			load : {
+				'0%' : {left: '-50%'},
+				'100%' : {left: '150%'}
+			}
 		}
   	}
   },

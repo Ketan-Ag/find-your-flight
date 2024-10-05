@@ -63,6 +63,7 @@ const Navbar = () => {
                 initialFlightToValue={flightTo}
                 initialDepartureValue={departureDate}
                 initalReturnValue={returnDate}
+                toggleLoadingScreen={()=>{}}
               />
             </div>
           </SheetContent>
